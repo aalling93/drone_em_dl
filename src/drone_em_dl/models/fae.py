@@ -99,9 +99,7 @@ class Fae():
 
         ae = tf.keras.models.Model(ae_input, ae_decoder_output, name=name)
 
-        optimizer = optimizer=tf.keras.optimizers.Adam(amsgrad=True,
-                                                      clipnorm=1, 
-                                                      clipvalue=1.0,learning_rate=0.005)
+        optimizer = optimizer=tf.keras.optimizers.Adam(learning_rate=0.005)
 
 
         lr_metric = get_lr_metric(optimizer)
