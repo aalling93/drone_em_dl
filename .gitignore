@@ -14,10 +14,10 @@ build/
 .coveralls.yml
 .coveralls
 .env
-data/raw/*
+#data/raw/*
 !data/raw/falster_data_Kristian.csv
 
-data/processed/*
+
 !data/processed/.gitkeep 
 
 data/results/*
@@ -46,8 +46,12 @@ coveralls.yml
 .gitattributes
 .dccache
 dccache
-data
-data/
+
+data/processed
+data/raw
+data/results
+
+
 landmask
 landmask/
 develop-eggs/
