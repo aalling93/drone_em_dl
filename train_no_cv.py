@@ -26,13 +26,14 @@ parser.add_argument(  "-latent_space_dim",  "--latent_space_dim",  help="Latens 
 parser.add_argument(  "-neurons", "--neurons", help="neurons", default=[210, 160, 360, 60, 310], type=list)
 parser.add_argument(  "-model_folder",  "--model_folder",  help="Folder for model",  default="models/cv",)
 parser.add_argument(  "-dropout_prob", "--dropout_prob", help="dropout_prob", default=0.1, type=float)
-parser.add_argument( "-session_name",  "--session_name",  help="your name to clear ml",  default="all data",  type=str,)
+parser.add_argument( "-session_name",  "--session_name",  help="your name to clear ml",  default="all_data",  type=str,)
 parser.add_argument( "-notes",  "--notes",  help="notes",  default="NA",  type=str,)
 parser.add_argument( "-upload_data",  "--upload_data",  help="upload_data",  default=False,  type=bool)
 args = parser.parse_args()
 
 
 name_append = datetime.now().strftime("%d_%m_%Y_%H")
+print(name_append)
 model_name = f"{args.session_name}" + "_" + name_append 
 task = Task.create(project_name="Drone_em_dl", task_name=f"Drone_em_dl_{args.session_name}_{model_name}")
 
@@ -130,6 +131,8 @@ os.makedirs(f"{args.model_folder}", exist_ok=True)
 
 
 with Fae() as ae:
+    print(model_name)
+    print('test')
     ae = ae.make_model(
             input_size=data.norm_data.norm_train[0].shape,
             latent_space_dim=args.latent_space_dim,
@@ -137,7 +140,8 @@ with Fae() as ae:
             dropout_prob=args.dropout_prob,
             name=model_name,
         )
-
+print(ae.name)
+ae._name = model_name
 callbacks = get_callbacks(ae)
 model_fit(
         ae,

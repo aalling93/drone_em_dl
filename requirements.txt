@@ -12,3 +12,5 @@ ipykernel
 ipython
 clearml
 plotly
+seaborn
+tensorflow
